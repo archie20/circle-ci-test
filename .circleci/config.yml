@@ -37,7 +37,7 @@ jobs:
     docker:
       - image: circleci/base:stable
       - checkout
-      - run
+      - run:
           name: "Name"
           command: "echo my name is $MY_NAME_VAR"                         
 
