@@ -36,6 +36,7 @@ jobs:
   my_name:
     docker:
       - image: circleci/base:stable
+    steps:  
       - checkout
       - run:
           name: "Name"
