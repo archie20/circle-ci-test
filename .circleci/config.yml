@@ -72,8 +72,19 @@ jobs:
     steps:
       - checkout
       - print_pipeline_id  
+  failing_job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run: return 1
+      - run:
+          name: "Run on fail"
+          command: echo "I failed"
+          when: on_fail
+
 # Invoke jobs via workflows
 workflows:
   say-name-workflow:
     jobs:
-      - echo_pipeline_id
+      - failing_job
