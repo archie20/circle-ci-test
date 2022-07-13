@@ -44,7 +44,7 @@ jobs:
             echo $MY_NAME_VAR                         
   save_hello_world_output:
     docker:
-      -image: cimg/base:stable
+      - image: cimg/base:stable
     steps: 
       - checkout
       - run: 
@@ -57,11 +57,11 @@ jobs:
            - .
   print_output_file:
     docker:
-      -image: cimg/base:stable
+      - image: cimg/base:stable
     steps:
-      - attach_workspace:
-        - at: ~/tmp/workspace 
       - checkout
+      - attach_workspace:
+          at: ~/tmp/workspace 
       - run: 
           name: "Print output"
           command: |
@@ -71,4 +71,7 @@ jobs:
 workflows:
   say-name-workflow:
     jobs:
-      - my_name
+      - save_hello_world_output
+      - print_output_file:
+          requires:
+            - save_hello_world_output
