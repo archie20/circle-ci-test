@@ -52,7 +52,7 @@ jobs:
           command: |
             echo "Hello world" > output.txt
       - persist_to_workspace:
-          root: ~/tmp/workspace     
+          root: /tmp/workspace     
           paths: 
            - .
   print_output_file:
@@ -61,7 +61,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/tmp/workspace 
+          at: /tmp/workspace 
       - run: 
           name: "Print output"
           command: |
