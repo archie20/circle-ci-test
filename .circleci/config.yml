@@ -77,7 +77,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: return 1
+      - run: exit 1
       - run:
           name: "Run on fail"
           command: echo "I failed"
