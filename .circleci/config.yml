@@ -10,7 +10,7 @@ commands:
           echo Workflow ID: $CIRCLE_WORKFLOW_ID
 jobs:
   say-hello:
-   
+    docker:
       - image: cimg/base:stable
     steps:
       - checkout
@@ -67,9 +67,9 @@ jobs:
           command: |
               cat output.txt               
   echo_pipeline_id:
-    - docker:
+    docker:
       - image: cimg/base:stable
-    - steps:
+    steps:
       - checkout
       - print_pipeline_id  
 # Invoke jobs via workflows
