@@ -83,8 +83,25 @@ jobs:
           command: echo "I failed"
           when: on_fail
 
+  smoke_test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          - name: "Smoke test"
+          - command: |
+              URL = "http://google.com"
+              if curl -s --head $URL
+                exit 0
+              else
+                exit 1
+              fi
+      - run: echo "FAIL"
+          - when: on_fail            
+
 # Invoke jobs via workflows
 workflows:
   say-name-workflow:
     jobs:
-      - failing_job
+      - smoke_test
