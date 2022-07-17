@@ -89,16 +89,19 @@ jobs:
     steps:
       - checkout
       - run:
-          - name: "Smoke test"
-          - command: |
+          name: "Smoke test"
+          command: |
               URL = "http://google.com"
-              if curl -s --head $URL
+              if curl -s --head ${URL}
+              then
                 exit 0
               else
                 exit 1
               fi
-      - run: echo "FAIL"
-          - when: on_fail            
+      - run: 
+          name: "Failed smoke test"
+          command:  echo "FAIL"
+          when: on_fail            
 
 # Invoke jobs via workflows
 workflows:
