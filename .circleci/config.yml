@@ -91,7 +91,7 @@ jobs:
       - run:
           name: "Smoke test"
           command: |
-              URL = "http://google.com"
+              URL="http://google.com"
               if curl -s --head ${URL}
               then
                 exit 0
